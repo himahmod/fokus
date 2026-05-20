@@ -4,11 +4,16 @@
 $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 $uri = '/' . ltrim($uri ?? '/', '/');
 
+// Prevent self-include when this file is accessed directly
+if ($uri === '/api/index.php' || $uri === '/api/') {
+    $uri = '/index.php';
+}
+
 if ($uri === '/' || $uri === '') {
     $uri = '/index.php';
 }
 
-// Only serve .php files
+// Only serve .php files — static assets are handled by Vercel routes
 if (pathinfo($uri, PATHINFO_EXTENSION) !== 'php') {
     http_response_code(404);
     exit;
