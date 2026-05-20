@@ -1,0 +1,334 @@
+/* ==========================================================
+   FOKUS — Page Profil
+   ========================================================== */
+
+.profil-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ---- Carte identité (gauche) ---- */
+.profil-identity {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Bandeau header de la carte */
+.profil-banner {
+  height: 90px;
+  background: linear-gradient(135deg, #1a1400 0%, #2a2000 50%, #111 100%);
+  border-bottom: 1px solid var(--gold-border);
+  position: relative;
+}
+.profil-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 80% at 50% 120%,
+    rgba(201, 162, 39, 0.18) 0%,
+    transparent 70%
+  );
+}
+
+.profil-avatar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px 24px;
+  margin-top: -36px;
+  position: relative;
+}
+
+.profil-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #000;
+  border: 3px solid var(--bg-card);
+  box-shadow: 0 0 0 2px var(--gold-border);
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.profil-name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-top: 12px;
+  text-align: center;
+}
+.profil-email {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 2px;
+}
+.profil-since {
+  font-size: 0.78rem;
+  color: var(--gold);
+  text-align: center;
+  margin-top: 10px;
+  background: var(--gold-muted);
+  border: 1px solid var(--gold-border);
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+
+/* Mini stats sous l'avatar */
+.profil-mini-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border-top: 1px solid var(--border);
+  margin-top: 16px;
+  width: 100%;
+}
+.mini-stat {
+  background: var(--bg-card);
+  padding: 14px;
+  text-align: center;
+}
+.mini-stat-value {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+}
+.mini-stat-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-top: 3px;
+}
+
+/* ---- Actions rapides ---- */
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  border-top: 1px solid var(--border);
+}
+.quick-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.87rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+.quick-action:hover {
+  color: var(--gold);
+  background: var(--gold-muted);
+}
+
+.qa-icon {
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
+}
+
+/* ---- Colonne droite ---- */
+.profil-right {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Carte objectifs */
+.objectifs-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.objectifs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.objectifs-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-add-obj {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gold-muted);
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+.btn-add-obj:hover {
+  background: var(--gold);
+  color: #000;
+}
+
+.btn-del-obj {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px;
+  min-height: 28px;
+  background: transparent;
+  color: var(--status-urgent);
+  font-size: 0.85rem;
+  border: 1px solid rgba(229, 57, 53, 0.35);
+  border-radius: 50% !important;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 0 !important;
+}
+.btn-del-obj:hover {
+  background: rgba(229, 57, 53, 0.12);
+}
+
+.objectifs-list {
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.objectif-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+.objectif-item:hover {
+  border-color: var(--gold-border);
+}
+.obj-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+.obj-text {
+  flex: 1;
+  font-size: 0.87rem;
+  color: var(--text-primary);
+}
+.obj-delete {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: var(--transition);
+}
+.objectif-item:hover .obj-delete {
+  opacity: 1;
+}
+.obj-delete:hover {
+  color: var(--status-urgent);
+}
+
+/* Formulaire modifier profil */
+.edit-profil-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.edit-profil-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.edit-profil-body {
+  padding: 20px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Réinitialiser tâches */
+.reinit-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(229, 57, 53, 0.2);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.reinit-text h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.reinit-text p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width: 900px) {
+  .profil-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .reinit-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

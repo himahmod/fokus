@@ -1,0 +1,157 @@
+/* ==========================================================
+   FOKUS — Page Paramètres
+   ========================================================== */
+
+/* ---- Grille principale ---- */
+.params-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.params-left,
+.params-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---- Carte paramètre ---- */
+.params-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: var(--transition);
+}
+.params-card:hover {
+  border-color: var(--gold-border);
+}
+
+.danger-card {
+  border-color: rgba(229, 57, 53, 0.25);
+}
+.danger-card:hover {
+  border-color: rgba(229, 57, 53, 0.5);
+}
+
+/* Header carte */
+.params-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.params-card-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.params-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.params-card-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Corps carte */
+.params-card-body {
+  padding: 16px 20px;
+}
+
+/* Ligne info */
+.params-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 16px;
+}
+.params-info-row:last-child {
+  border-bottom: none;
+}
+.params-info-label {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.params-info-value {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  text-align: right;
+}
+
+/* Footer carte */
+.params-card-footer {
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+}
+
+/* ---- Stats rapides ---- */
+.params-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+}
+.params-stat {
+  background: var(--bg-card);
+  padding: 20px;
+  text-align: center;
+}
+.params-stat-value {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.params-stat-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.params-stat.done .params-stat-value  { color: var(--status-done); }
+.params-stat.urgent .params-stat-value { color: var(--status-urgent); }
+
+/* ---- Zone dangereuse ---- */
+.danger-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(229, 57, 53, 0.1);
+}
+.danger-row:last-child {
+  border-bottom: none;
+}
+.danger-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+.danger-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width: 900px) {
+  .params-grid {
+    grid-template-columns: 1fr;
+  }
+}

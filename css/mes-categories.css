@@ -1,0 +1,204 @@
+/* ==========================================================
+   FOKUS — Page Mes Catégories
+   ========================================================== */
+
+/* ---- Header de page ---- */
+.cat-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.cat-page-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ---- Grille des cartes ---- */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+/* ---- Carte catégorie ---- */
+.cat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: var(--transition);
+}
+.cat-card:hover {
+  border-color: var(--gold-border);
+  box-shadow: var(--shadow-gold);
+}
+
+/* Header carte */
+.cat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.cat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.cat-color-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.cat-card-actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* Description */
+.cat-card-desc {
+  padding: 10px 18px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  min-height: 40px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Compteur */
+.cat-card-count {
+  padding: 10px 18px;
+}
+.cat-count-badge {
+  display: inline-block;
+  background: var(--gold-muted);
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* Liste tâches */
+.cat-task-list {
+  padding: 0 18px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.cat-task-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+}
+.cat-task-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.cat-task-dot.status-urgent   { background: var(--status-urgent); }
+.cat-task-dot.status-en_cours { background: var(--gold); }
+.cat-task-dot.status-a_faire  { background: var(--status-todo); }
+.cat-task-dot.status-termine  { background: var(--status-done); }
+
+.cat-task-name {
+  flex: 1;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cat-task-date {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* Aucune tâche */
+.cat-task-empty {
+  padding: 12px 18px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Footer carte */
+.cat-card-footer {
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+}
+/* .btn-add-card → global.css */
+
+/* ---- Aucune catégorie ---- */
+.cat-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 80px 20px;
+  text-align: center;
+  color: var(--text-muted);
+}
+.cat-empty-icon {
+  font-size: 3rem;
+  opacity: 0.5;
+}
+
+/* Boutons action colonne */
+.btn-col-action {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: var(--transition);
+}
+.btn-col-action:hover {
+  border-color: var(--gold-border);
+  color: var(--gold);
+}
+.btn-col-action.del:hover {
+  border-color: rgba(229, 57, 53, 0.4);
+  color: var(--status-urgent);
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width: 900px) {
+  .cat-grid {
+    grid-template-columns: 1fr;
+  }
+  .cat-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

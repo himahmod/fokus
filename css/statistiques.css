@@ -1,0 +1,204 @@
+/* ==========================================================
+   FOKUS — Page Statistiques
+   ========================================================== */
+
+/* ---- Grille des cartes stats ---- */
+.stats-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.stat-card:hover {
+  border-color: var(--gold-border);
+  box-shadow: var(--shadow-gold);
+  transform: translateY(-2px);
+}
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.stat-card-icon {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  display: block;
+}
+.stat-card-value {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+  margin-bottom: 6px;
+}
+.stat-card-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.stat-card-sub {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+/* Variantes de couleur */
+.stat-card.urgent::before {
+  background: linear-gradient(90deg, var(--status-urgent), transparent);
+}
+.stat-card.urgent .stat-card-value {
+  color: var(--status-urgent);
+}
+
+.stat-card.done::before {
+  background: linear-gradient(90deg, var(--status-done), transparent);
+}
+.stat-card.done .stat-card-value {
+  color: var(--status-done);
+}
+
+.stat-card.todo::before {
+  background: linear-gradient(90deg, var(--status-todo), transparent);
+}
+.stat-card.todo .stat-card-value {
+  color: var(--status-todo);
+}
+
+/* ---- Grille inférieure : graphiques + calendrier ---- */
+.stats-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+}
+
+/* ---- Barres de progression par catégorie ---- */
+.categories-breakdown {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+
+.cat-bar-item {
+  margin-bottom: 18px;
+}
+.cat-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.cat-bar-name {
+  font-size: 0.87rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.cat-bar-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.cat-bar-track {
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.cat-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  transition: width 1s ease;
+}
+.cat-bar-fill.fill-blue {
+  background: linear-gradient(90deg, var(--status-todo), #42a5f5);
+}
+.cat-bar-fill.fill-green {
+  background: linear-gradient(90deg, var(--status-done), #66bb6a);
+}
+.cat-bar-fill.fill-red {
+  background: linear-gradient(90deg, var(--status-urgent), #ef5350);
+}
+
+/* Progression */
+.progress-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+.progress-bar-wrap {
+  background: var(--border);
+  border-radius: 4px;
+  height: 6px;
+  overflow: hidden;
+  margin: 10px 0 6px;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 4px;
+  transition: width 0.8s ease;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ---- Colonne de synthèse (stats-summary/stats-grid/stat-cell → global.css) ---- */
+.statistique-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cat-bar-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width: 1100px) {
+  .stats-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stats-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .stats-cards-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 400px) {
+  .stats-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
