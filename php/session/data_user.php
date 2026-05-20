@@ -14,10 +14,10 @@ try {
     $req->execute([':nom' => $username]);
     $array = $req->fetch();
 
-    $mail               = $array['MAIL'];
-    $signin_date        = $array['SIGNIN_DATE'];
-    $last_cnx           = $array['LAST_CONNEXION'];
-    $role_p             = $array['ROLE_P'];
+    $mail               = $array['MAIL']           ?? '';
+    $signin_date        = $array['SIGNIN_DATE']    ?? '';
+    $last_cnx           = $array['LAST_CONNEXION'] ?? '';
+    $role_p             = $array['ROLE_P']         ?? '';
     $nb_taches_par_page = (int)($array['NB_TACHES'] ?? 5);
     $first_letter       = strtoupper($username[0]);
 
@@ -25,7 +25,7 @@ try {
     $req = $connexion->prepare("SELECT PHOTO FROM PHOTO_PROFIL WHERE UTILISATEUR = :nom");
     $req->execute([':nom' => $username]);
     $row = $req->fetch();
-    $photo_profil = ($row && is_string($row['PHOTO'])) ? $row['PHOTO'] : null;
+    $photo_profil = ($row && is_string($row['PHOTO'] ?? null)) ? $row['PHOTO'] : null;
 
     /* ── Compteurs ── */
     $req = $connexion->prepare("SELECT COUNT(*) FROM TACHES WHERE UTILISATEUR_T = :nom");

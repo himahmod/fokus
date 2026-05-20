@@ -15,6 +15,7 @@ function getConnexion(): PDO {
         $connexion = new PDO($dsn, $user, $pass);
         $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $connexion->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $connexion->setAttribute(PDO::ATTR_CASE, PDO::CASE_UPPER);
         return $connexion;
     } catch (PDOException $e) {
         exit("Erreur BDD : " . $e->getMessage());

@@ -301,7 +301,7 @@ function recuperer_hash_utilisateur(string $user): ?string
     $stmt = $connexion->prepare("SELECT PASSEWORD FROM PERSONNE WHERE NOM_P = :user");
     $stmt->execute([':user' => $user]);
     $row = $stmt->fetch();
-    return $row ? $row['PASSEWORD'] : null;
+    return $row ? ($row['PASSEWORD'] ?? null) : null;
 }
 
 /**
