@@ -80,7 +80,7 @@
             <p style="color: var(--text-muted); font-size: 0.85rem; padding: 20px 0;">Aucune catégorie créée.</p>
           <?php else: ?>
             <?php foreach ($repartition_categories as $cat):
-              $pct = $nb_taches > 0 ? round(($cat['nb'] / $nb_taches) * 100) : 0;
+              $pct = $nb_taches > 0 ? round(($cat['NB'] / $nb_taches) * 100) : 0;
             ?>
               <div class="cat-bar-item">
                 <div class="cat-bar-header">
@@ -88,7 +88,7 @@
                     <span class="cat-bar-dot" style="background: <?= htmlspecialchars($cat['COLOR_C']) ?>"></span>
                     <?= htmlspecialchars($cat['NOM_C']) ?>
                   </span>
-                  <span class="cat-bar-count"><?= $cat['nb'] ?> tâche<?= $cat['nb'] > 1 ? 's' : '' ?> — <?= $pct ?>%</span>
+                  <span class="cat-bar-count"><?= $cat['NB'] ?> tâche<?= $cat['NB'] > 1 ? 's' : '' ?> — <?= $pct ?>%</span>
                 </div>
                 <div class="cat-bar-track">
                   <div class="cat-bar-fill" style="width: <?= $pct ?>%; background: <?= htmlspecialchars($cat['COLOR_C']) ?>"></div>

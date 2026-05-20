@@ -11,23 +11,23 @@ try {
     /* ── Compteurs par statut (une seule requête) ── */
     $req = $connexion->prepare(
         "SELECT
-            COUNT(*) as total,
-            COUNT(*) FILTER (WHERE STATUT = 'termine')       as termine,
-            COUNT(*) FILTER (WHERE STATUT = 'en_cours')      as en_cours,
-            COUNT(*) FILTER (WHERE STATUT = 'a_faire')       as a_faire,
-            COUNT(*) FILTER (WHERE CATEGORIE_T IS NULL)      as sans_cat,
-            COUNT(*) FILTER (WHERE CATEGORIE_T IS NOT NULL)  as avec_cat
+            COUNT(*) as TOTAL,
+            COUNT(*) FILTER (WHERE STATUT = 'termine')       as TERMINE,
+            COUNT(*) FILTER (WHERE STATUT = 'en_cours')      as EN_COURS,
+            COUNT(*) FILTER (WHERE STATUT = 'a_faire')       as A_FAIRE,
+            COUNT(*) FILTER (WHERE CATEGORIE_T IS NULL)      as SANS_CAT,
+            COUNT(*) FILTER (WHERE CATEGORIE_T IS NOT NULL)  as AVEC_CAT
          FROM TACHES WHERE UTILISATEUR_T = :nom"
     );
     $req->execute([':nom' => $username]);
     $stats = $req->fetch();
 
-    $nb_taches          = (int)$stats['total'];
-    $nb_taches_termines = (int)$stats['termine'];
-    $nb_taches_en_cours = (int)$stats['en_cours'];
-    $nb_taches_a_faire  = (int)$stats['a_faire'];
-    $nb_sans_categories = (int)$stats['sans_cat'];
-    $nb_avec_cat        = (int)$stats['avec_cat'];
+    $nb_taches          = (int)$stats['TOTAL'];
+    $nb_taches_termines = (int)$stats['TERMINE'];
+    $nb_taches_en_cours = (int)$stats['EN_COURS'];
+    $nb_taches_a_faire  = (int)$stats['A_FAIRE'];
+    $nb_sans_categories = (int)$stats['SANS_CAT'];
+    $nb_avec_cat        = (int)$stats['AVEC_CAT'];
 
     // Urgent (basé sur le champ URGENT, pas le statut)
     $req = $connexion->prepare(
@@ -55,12 +55,12 @@ try {
 
     /* ── Répartition par catégorie ── */
     $req = $connexion->prepare(
-        "SELECT c.NOM_C, c.COLOR_C, COUNT(t.ID_T) as nb
+        "SELECT c.NOM_C, c.COLOR_C, COUNT(t.ID_T) as NB
          FROM CATEGORIE c
          LEFT JOIN TACHES t ON t.CATEGORIE_T = c.ID_C AND t.UTILISATEUR_T = :nom
          WHERE c.UTILISATEUR_C = :nom
          GROUP BY c.ID_C, c.NOM_C, c.COLOR_C
-         ORDER BY nb DESC"
+         ORDER BY NB DESC"
     );
     $req->execute([':nom' => $username]);
     $repartition_categories = $req->fetchAll();
