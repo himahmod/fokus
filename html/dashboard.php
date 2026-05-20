@@ -1,4 +1,4 @@
-﻿<?php require_once __DIR__ . '/../php/session/data_user.php'; ?>
+<?php require_once __DIR__ . '/../php/session/data_user.php'; ?>
 <?php require_once __DIR__ . '/../php/session/categorie.php'; ?>
 <!doctype html>
 <html lang="fr">

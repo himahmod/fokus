@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once __DIR__ . '/../php/session/data_user.php';
 require_once __DIR__ . '/../php/session/categorie.php';
 $cal_mode = 'agenda';
