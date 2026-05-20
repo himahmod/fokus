@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
 
 function getConnexion(): PDO {
+    static $connexion = null;
+    if ($connexion !== null) return $connexion;
     try {
         $host = getenv('PGHOST')     ?: 'localhost';
         $db   = getenv('PGDATABASE') ?: 'postgres';
@@ -18,6 +18,7 @@ function getConnexion(): PDO {
         $connexion->setAttribute(PDO::ATTR_CASE, PDO::CASE_UPPER);
         return $connexion;
     } catch (PDOException $e) {
+        http_response_code(500);
         exit("Erreur BDD : " . $e->getMessage());
     }
 }

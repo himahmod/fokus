@@ -26,7 +26,7 @@ if (strpos($uri, '..') !== false) {
 }
 
 // App root is one level up from api/
-$baseDir = realpath(__DIR__ . '/..');
+$baseDir = dirname(__DIR__);
 $filePath = $baseDir . str_replace('/', DIRECTORY_SEPARATOR, $uri);
 
 if (!file_exists($filePath)) {
@@ -34,5 +34,12 @@ if (!file_exists($filePath)) {
     echo '<!DOCTYPE html><html><body><h1>404 - Page not found</h1></body></html>';
     exit;
 }
+
+// Register DB-backed session handler before any session_start() call.
+// File-based sessions break on Vercel: concurrent requests hit different
+// serverless containers with separate /tmp, so sessions are invisible to each other.
+require_once $baseDir . '/BDD/bdd.php';
+require_once $baseDir . '/php/DBSessionHandler.php';
+session_set_save_handler(new DBSessionHandler(), true);
 
 include $filePath;
