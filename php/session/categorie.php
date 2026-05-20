@@ -15,34 +15,13 @@ try {
     $req->execute([':nom' => $user]);
     $categories = $req->fetchAll();
 
-    // Pour chaque catégorie : nb de tâches + liste des tâches
+    // Derive per-category data from the already-fetched $toutes_taches (no N+1 queries)
     foreach ($categories as &$cat) {
-        $req2 = $connexion->prepare(
-            "SELECT COUNT(*) FROM TACHES WHERE CATEGORIE_T = :id AND UTILISATEUR_T = :nom"
-        );
-        $req2->execute([':id' => $cat['ID_C'], ':nom' => $user]);
-        $cat['nb_taches'] = $req2->fetchColumn();
-
-        $req3 = $connexion->prepare(
-            "SELECT ID_T, NOM_T, STATUT, LIMIT_DATE FROM TACHES
-             WHERE CATEGORIE_T = :id AND UTILISATEUR_T = :nom
-             ORDER BY LIMIT_DATE ASC"
-        );
-        $req3->execute([':id' => $cat['ID_C'], ':nom' => $user]);
-        $cat['taches'] = $req3->fetchAll();
+        $cat_id = $cat['ID_C'];
+        $cat['taches']    = array_values(array_filter($toutes_taches, fn($t) => (int)$t['CATEGORIE_T'] === (int)$cat_id));
+        $cat['nb_taches'] = count($cat['taches']);
     }
     unset($cat);
-
-    // Toutes les tâches avec catégorie
-    $req = $connexion->prepare(
-        "SELECT t.*, c.NOM_C as NOM_CAT, c.COLOR_C as COLOR_CAT
-         FROM TACHES t
-         LEFT JOIN CATEGORIE c ON t.CATEGORIE_T = c.ID_C
-         WHERE t.UTILISATEUR_T = :nom
-         ORDER BY t.LIMIT_DATE ASC"
-    );
-    $req->execute([':nom' => $user]);
-    $toutes_taches = $req->fetchAll();
 
 } catch (PDOException $e) {
     gerer_erreur_pdo($e, 'categorie.php');

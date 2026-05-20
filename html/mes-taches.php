@@ -16,7 +16,6 @@
     <script src="/js/edit.js" defer></script>
     <script src="/js/errors.js" defer></script>
     <script src="/js/success.js" defer></script>
-    <?php include __DIR__ . '/../php/modals.php'; ?>
   </head>
   <body>
     <?php require_once __DIR__ . '/util_html_elem/nav_bar.php'; ?>
@@ -245,6 +244,6 @@
     </div><!-- /.app-layout -->
 
     <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
-
+    <?php include __DIR__ . '/../php/modals.php'; ?>
   </body>
 </html>

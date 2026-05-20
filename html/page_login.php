@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/login.css" />
     <link rel="icon" type="image/png" href="/image/logo.png" />
-    <?php include __DIR__ . '/../php/modals.php'; ?>
   </head>
   <body class="login-body">
 
@@ -16,7 +15,7 @@
       <aside class="login-brand">
         <div class="brand-content">
           <a href="/html/page_de_garde.php" class="brand-logo">
-            <img style="width:100%" src="/image/marque.png" alt="Fokus" />
+            <img style="max-width:160px;width:100%" src="/image/marque.png" alt="Fokus" />
           </a>
           <h1 class="brand-tagline">Organisez.<br />Priorisez.<br />Accomplissez.</h1>
           <p class="brand-desc">

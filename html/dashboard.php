@@ -10,12 +10,11 @@
     <link rel="stylesheet" href="/css/dashboard.css" />
     <link rel="icon" type="image/png" href="/image/logo.png" />
         <script src="/js/main.js" defer></script>
-    <script src="/js/calendar.js"></script>
+    <script src="/js/calendar.js" defer></script>
     <script src="/js/delete.js" defer></script>
     <script src="/js/success.js" defer></script>
     <script src="/js/errors.js" defer></script>
     <script src="/js/edit.js" defer></script>
-    <?php include __DIR__ . '/../php/modals.php'; ?>
   </head>
   <body>
 
@@ -357,5 +356,6 @@
       nextId:  'cal-next',
     });
     </script>
+    <?php include __DIR__ . '/../php/modals.php'; ?>
   </body>
 </html>

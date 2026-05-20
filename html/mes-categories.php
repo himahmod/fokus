@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/mes-categories.css" />
     <link rel="icon" type="image/png" href="/image/logo.png" />
-    <?php include __DIR__ . '/../php/modals.php'; ?>
   </head>
   <body>
 
@@ -108,5 +107,6 @@
     <script src="/js/errors.js" defer></script>
     <script src="/js/success.js" defer></script>
     <script src="/js/edit.js" defer></script>
+    <?php include __DIR__ . '/../php/modals.php'; ?>
   </body>
 </html>

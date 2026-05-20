@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/statistiques.css" />
     <link rel="icon" type="image/png" href="/image/logo.png" />
-    <?php include __DIR__ . '/../php/modals.php'; ?>
   </head>
   <body>
 
@@ -160,5 +159,6 @@
     <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
 
     <script src="/js/main.js" defer></script>
+    <?php include __DIR__ . '/../php/modals.php'; ?>
   </body>
 </html>

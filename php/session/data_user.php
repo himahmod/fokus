@@ -27,16 +27,7 @@ try {
     $row = $req->fetch();
     $photo_profil = ($row && is_string($row['PHOTO'] ?? null)) ? $row['PHOTO'] : null;
 
-    /* ── Compteurs ── */
-    $req = $connexion->prepare("SELECT COUNT(*) FROM TACHES WHERE UTILISATEUR_T = :nom");
-    $req->execute([':nom' => $username]);
-    $nb_taches = $req->fetchColumn();
-
-    $req = $connexion->prepare("SELECT COUNT(*) FROM CATEGORIE WHERE UTILISATEUR_C = :nom");
-    $req->execute([':nom' => $username]);
-    $nb_categories = $req->fetchColumn();
-
-    /* ── Toutes les tâches ── */
+    /* ── Toutes les tâches (compteurs dérivés après) ── */
     $req = $connexion->prepare(
         "SELECT t.*, c.NOM_C as NOM_CAT, c.COLOR_C as COLOR_CAT
          FROM TACHES t
@@ -46,6 +37,11 @@ try {
     );
     $req->execute([':nom' => $username]);
     $toutes_taches = $req->fetchAll();
+    $nb_taches = count($toutes_taches);
+
+    $req = $connexion->prepare("SELECT COUNT(*) FROM CATEGORIE WHERE UTILISATEUR_C = :nom");
+    $req->execute([':nom' => $username]);
+    $nb_categories = $req->fetchColumn();
 
     /* ── Données agenda ── */
     $req = $connexion->prepare(

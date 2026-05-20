@@ -12,11 +12,10 @@ $cal_mode = 'agenda';
   <link rel="stylesheet" href="/css/global.css" />
   <link rel="stylesheet" href="/css/agenda.css" />
   <link rel="icon" type="image/png" href="/image/logo.png" />
-  <script src="/js/calendar.js"></script>
+  <script src="/js/calendar.js" defer></script>
   <script src="/js/main.js" defer></script>
   <script src="/js/errors.js" defer></script>
   <script src="/js/success.js" defer></script>
-  <?php include __DIR__ . '/../php/modals.php'; ?>
 </head>
 <body>
 
@@ -172,5 +171,6 @@ $cal_mode = 'agenda';
       onDayClick:    (jour, mois, annee) => afficherTachesJour(jour, mois, annee),
     });
   </script>
+  <?php include __DIR__ . '/../php/modals.php'; ?>
 </body>
 </html>
