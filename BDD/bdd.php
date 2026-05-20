@@ -5,13 +5,13 @@ ini_set("display_errors", 1);
 
 function getConnexion(): PDO {
     try {
-        $host = getenv('MYSQLHOST') ?: 'localhost';
-        $db   = getenv('MYSQLDATABASE') ?: 'grainray';
-        $user = getenv('MYSQLUSER') ?: 'root';
-        $pass = getenv('MYSQLPASSWORD') ?: '';
-        $port = getenv('MYSQLPORT') ?: '3306';
+        $host = getenv('PGHOST')     ?: 'localhost';
+        $db   = getenv('PGDATABASE') ?: 'postgres';
+        $user = getenv('PGUSER')     ?: 'postgres';
+        $pass = getenv('PGPASSWORD') ?: '';
+        $port = getenv('PGPORT')     ?: '5432';
 
-        $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";
+        $dsn = "pgsql:host=$host;port=$port;dbname=$db;sslmode=require";
         $connexion = new PDO($dsn, $user, $pass);
         $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $connexion->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);

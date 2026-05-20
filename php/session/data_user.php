@@ -51,7 +51,7 @@ try {
     $req = $connexion->prepare(
         "SELECT NOM_T, STATUT, LIMIT_DATE FROM TACHES
          WHERE UTILISATEUR_T = :u
-         AND LIMIT_DATE BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 3 DAY)
+         AND LIMIT_DATE BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '3 days'
          AND STATUT != 'termine'
          ORDER BY LIMIT_DATE ASC"
     );

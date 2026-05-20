@@ -54,12 +54,11 @@ try {
     $stmt = $connexion->prepare(
         "INSERT INTO PHOTO_PROFIL (UTILISATEUR, PHOTO)
          VALUES (:user, :photo)
-         ON DUPLICATE KEY UPDATE PHOTO = :photo2, DATE_UPLOAD = NOW()"
+         ON CONFLICT (UTILISATEUR) DO UPDATE SET PHOTO = EXCLUDED.PHOTO, DATE_UPLOAD = NOW()"
     );
     $stmt->execute([
-        ':user'   => $user,
-        ':photo'  => $base64,
-        ':photo2' => $base64,
+        ':user'  => $user,
+        ':photo' => $base64,
     ]);
     $connexion = null;
 } catch (PDOException $e) {

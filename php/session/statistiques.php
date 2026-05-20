@@ -12,11 +12,11 @@ try {
     $req = $connexion->prepare(
         "SELECT
             COUNT(*) as total,
-            SUM(STATUT = 'termine')  as termine,
-            SUM(STATUT = 'en_cours') as en_cours,
-            SUM(STATUT = 'a_faire')  as a_faire,
-            SUM(CATEGORIE_T IS NULL) as sans_cat,
-            SUM(CATEGORIE_T IS NOT NULL) as avec_cat
+            COUNT(*) FILTER (WHERE STATUT = 'termine')       as termine,
+            COUNT(*) FILTER (WHERE STATUT = 'en_cours')      as en_cours,
+            COUNT(*) FILTER (WHERE STATUT = 'a_faire')       as a_faire,
+            COUNT(*) FILTER (WHERE CATEGORIE_T IS NULL)      as sans_cat,
+            COUNT(*) FILTER (WHERE CATEGORIE_T IS NOT NULL)  as avec_cat
          FROM TACHES WHERE UTILISATEUR_T = :nom"
     );
     $req->execute([':nom' => $username]);
@@ -31,7 +31,7 @@ try {
 
     // Urgent (basé sur le champ URGENT, pas le statut)
     $req = $connexion->prepare(
-        "SELECT COUNT(*) FROM TACHES WHERE UTILISATEUR_T = :nom AND URGENT = 1"
+        "SELECT COUNT(*) FROM TACHES WHERE UTILISATEUR_T = :nom AND URGENT = TRUE"
     );
     $req->execute([':nom' => $username]);
     $nb_taches_urgent = (int)$req->fetchColumn();
